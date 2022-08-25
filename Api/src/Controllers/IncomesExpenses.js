@@ -125,6 +125,7 @@ const deleteIncome= async(req,res,next)=>{
 
 const deleteExpenses= async(req,res,next)=>{
     const {id}= req.body;
+    console.log(id)
 
     try{
 

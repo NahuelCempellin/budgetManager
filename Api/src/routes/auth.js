@@ -2,8 +2,9 @@ const {userAuthentication} = require('../Controllers/CRUDcontroller');
 const express = require('express');
 const router = express.Router();
 
-router.get('/',async(req,res)=>{
+router.post('/',async(req,res)=>{
     const{mail,password}= req.body;
+    console.log(mail,password)
 
     try{
         const auth= await userAuthentication(mail,password);
