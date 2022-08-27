@@ -1,31 +1,46 @@
-import React,{useEffect,useState} from "react";
-import {useDispatch} from 'react-redux';
+import React,{useEffect} from "react";
+import {useDispatch,useSelector} from 'react-redux';
+import { Link } from "react-router-dom";
 import NavHome from "../navbar/navHome/navHome";
 import { LogoutNav } from "../navbar/navHome/logout";
 import { HomeCont } from "../../styles/home/home";
-
+import { getUser } from "../../reducer/actions";
 
 export default function Home(){
+const userData= useSelector((state)=> state.login)
+const dispatch= useDispatch();
 const logdata=localStorage.getItem('login');
 const Data= JSON.parse(logdata);
-console.log(Data)
+
+const user= {
+    name: Data.name,
+    surname: Data.surname
+}
+
 
 useEffect(()=>{
+    dispatch(getUser(user))
+    
+    },[])
 
-},[logdata.length !== 0])
+const us= useSelector((state)=> state.user)
 
-let amountIncome= Data.incomes.map(el=> el.amount).reduce((prev, curr) => prev + curr, 0);
-let amountExpenses= Data.expenses.map(el=> el.amount).reduce((prev, curr) => prev + curr, 0);
+
+
+
+
+let amountIncome= userData.incomes.map(el=> el.amount).reduce((prev, curr) => prev + curr, 0);
+let amountExpenses= userData.expenses.map(el=> el.amount).reduce((prev, curr) => prev + curr, 0);
 let Balance= amountIncome - amountExpenses;
 
 
 
-let incomes= Data.incomes.map(el=> el);
-let expenses= Data.expenses.map(el=> el);
+let incomes= userData.incomes.map(el=> el);
+let expenses= userData.expenses.map(el=> el);
 
 const cards= [...incomes, ...expenses];
 
-console.log(cards)
+
 
 
 

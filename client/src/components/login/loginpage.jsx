@@ -18,29 +18,28 @@ export default function LoginPage(){
         password: ''
     })
 
-    
    
-
+   
+    
     useEffect(()=>{
-        if(loginController === true){
-           console.log('Authentication error')
-        }else{
+        if(login.name) {
             localStorage.setItem('login', JSON.stringify(login));
-            const view= localStorage.getItem('login')
-            console.log(view)
-            console.log('holis')
-            // navigate('/home')
-        }
-
+           const view= localStorage.getItem('login')
+           
+           navigate('/home')
+       }
         return()=>{}
-    },[login])
+    },[login.name])
 
 
     function handlerLogin(){
         if(log.mail && log.password){
              dispatch(getLogin(log))
-
-        }        
+            } 
+            
+         
+        
+        
     }
 
     

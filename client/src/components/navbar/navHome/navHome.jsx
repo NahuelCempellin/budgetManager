@@ -1,12 +1,17 @@
 import React from "react";
 import { NavHomeCont } from "../../../styles/home/home";
+import { Link } from "react-router-dom";
 
 export default function NavHome(){
     return(
         <NavHomeCont>
-            <a>Add Income</a>
-            <a>Add Expenses</a>
-            <a>View last movements</a>
+            <Link to={'/addincome'}>
+            <div>Add Income</div>
+            </Link>
+            <Link to={'/addexpenses'}>
+            <div>Add Expenses</div>
+            </Link>
+            <div>View last movements</div>
         </NavHomeCont>
     )
 }

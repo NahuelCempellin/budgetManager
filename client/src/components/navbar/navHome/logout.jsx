@@ -13,6 +13,7 @@ export function LogoutNav(){
     function Logout(){
         dispatch(getLogout())
         localStorage.clear('login')
+        localStorage.removeItem('login')
         navigate('/')
     }
 

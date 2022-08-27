@@ -61,13 +61,38 @@ const userAuthentication= async (mail, password)=>{
         return dbUser;
 
     }catch(error){
-        next(error)
+        console.log(error)
     }
 }
 
 
+const userID= async (name,surname)=>{
+    
+
+    try{
+        const dbUser= await User.findOne({
+            include: [Expenses, Income],
+            where:{
+                name:{
+                    [Op.iLike]: `${name}`
+                },
+                surname:{
+                    [Op.iLike]: `${surname}`
+                }
+            }
+        })
+        
+        
+        return dbUser;
+
+    }catch(error){
+        console.log(error)
+    }
+}
+
 module.exports= {
     createUser,
     getDbInfo,
-    userAuthentication
+    userAuthentication,
+    userID
 }

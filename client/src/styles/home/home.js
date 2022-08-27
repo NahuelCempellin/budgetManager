@@ -62,6 +62,7 @@ height:20em;
 
     h2{
       color: black; 
+      
     }
 
     h1{
@@ -70,6 +71,7 @@ height:20em;
         width: 50%;
         padding: 1em;
         border-radius: 20em;
+        
         box-shadow: 6px 6px 3px 0pxrgb(0 0 0 / 75%);
     -webkit-box-shadow: 1px 0px 3px 0px rgb(0 0 0 / 37%);
     -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
@@ -85,7 +87,7 @@ height:20em;
     width:95%;
     height:30em;
     display:flex;
-    align-items:center;
+    align-items:flex-start;
     justify-content:space-center;
     border-radius: 10px;
 
@@ -96,18 +98,18 @@ height:20em;
 
     overflow-x: hidden;
     overflow-y: auto;
-
+    
     ul{
         
+        
         width:100%;
-        margin-top:15em;
+        height:auto;
+        
         padding:0;
-        min-height:20em;
         display:flex;
         align-items:center;
         justify-content:space-around;
         flex-direction: column;
-        
        
         .card{
             color:black;
@@ -173,12 +175,17 @@ justify-content: space-around;
 box-shadow: 6px 6px 3px 0pxrgb(0 0 0 / 75%);
     -webkit-box-shadow: 1px 0px 3px 0px rgb(0 0 0 / 14%);
     -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-a{
+    
+    a{
+        text-decoration: none;
+     }
+div{
     
     border-radius: 10px;
     background-color: #550ceb;
     color: white;
     padding:.7em;
+    
 
     box-shadow: 6px 6px 3px 0px rgb(0 0 0 / 75%);
     -webkit-box-shadow: 2px 3px 3px 0px rgb(0 0 0 / 39%);
@@ -188,6 +195,7 @@ a{
     &:active{
         box-shadow: box-shadow:7px 6px 28px 1px rgba(0, 0, 0, 0.24);
     transform: translateY(4px);
+
     
 }
 

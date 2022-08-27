@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { LandingDiv } from "../../styles/landing/landing";
 import Spline from '@splinetool/react-spline'
 import { SpDiv, Text} from "../../styles/landing/landing";
@@ -7,6 +7,12 @@ import { Link } from "react-router-dom";
 
 
 export default function LandingPage(){
+
+
+    useEffect(()=>{
+    localStorage.clear('login')
+    localStorage.removeItem('login')
+    },[])
     return(
         <LandingDiv>
             

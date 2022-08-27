@@ -1,13 +1,18 @@
-import { GET_LOGIN, LOGIN_ERROR, GET_LOGOUT } from "../constants/constants";
+import { GET_LOGIN, LOGIN_ERROR, GET_LOGOUT, GET_USER,POST_INCOME,POST_EXPENSES} from "../constants/constants";
 
 const initialState={
     login:[],
-    logError: false
+    logError: false,
+    user:[]
 
 };
 
 const reducer= (state= initialState,action)=>{
     switch(action.type){
+        case POST_INCOME:
+            return{
+                ...state
+            }
         case GET_LOGIN:
             return{
                 ...state,
@@ -25,8 +30,15 @@ const reducer= (state= initialState,action)=>{
             return{
                 ...state,
                 logError: true,
-                login:[]
+                login:[],
+                user:[]
             }
+
+        case GET_USER:
+            return{
+                ...state,
+                user: action.payload
+            }    
 
         default:
             return{
