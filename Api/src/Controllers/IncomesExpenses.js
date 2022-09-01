@@ -43,7 +43,9 @@ try{
 
 
 const editIncome= async(req,res,next)=>{
+    
     const{Concept,amount,date,type,category,id}= req.body;
+    console.log(id)
     const incomeUpdate= await Income.findByPk(id);
 
     try{
@@ -105,8 +107,60 @@ const editExpenses= async(req,res,next)=>{
 }
 
 
-const deleteIncome= async(req,res,next)=>{
+const incomeID= async(req,res,next)=>{
+    const {id}= req.params;
+    console.log(id)
+
+    try{
+
+        const income = await Income.findOne({
+            where:{
+                id: id
+            }
+        })
+
+        console.log(income)
+
+        if(income === null){
+            const expenses = await Expenses.findOne({
+                where:{
+                    id: id
+                }
+            })
+            res.status(200).json(expenses)
+        }
+      
+        res.status(200).json(income)
+
+    }catch(error){
+        next(error)
+    }
+}
+
+
+const expensesID= async(req,res,next)=>{
     const {id}= req.body;
+
+    try{
+
+        const expenses = await Expenses.findOne({
+            where:{
+                id: id
+            }
+        })
+       
+        res.status(200).json(expenses)
+
+    }catch(error){
+        next(error)
+    }
+}
+
+
+
+const deleteIncome= async(req,res,next)=>{
+    const {id}= req.query;
+    
 
     try{
 
@@ -115,7 +169,16 @@ const deleteIncome= async(req,res,next)=>{
                 id: id
             }
         })
-        console.log(del)
+
+        
+        const del2 = await Expenses.destroy({
+                where:{
+                    id: id
+                }
+            })
+            console.log(del2)
+        
+        console.log(del,del2)
         res.status(200).json({msg: "Deleted"})
 
     }catch(error){
@@ -149,5 +212,7 @@ module.exports= {
     addIncome,
     addExpenses,
     editIncome,
-    editExpenses
+    editExpenses,
+    incomeID,
+    expensesID
 }

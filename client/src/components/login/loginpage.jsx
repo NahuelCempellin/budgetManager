@@ -3,7 +3,7 @@ import {useSelector,useDispatch} from 'react-redux';
 import { Link, useNavigate } from "react-router-dom";
 import { LoginCont } from "../../styles/login/login";
 import {BiArrowBack} from 'react-icons/bi';
-import { getLogin } from "../../reducer/actions";
+import { actualize, getLogin, getUSerById } from "../../reducer/actions";
 
 
 
@@ -24,9 +24,12 @@ export default function LoginPage(){
     useEffect(()=>{
         if(login.name) {
             localStorage.setItem('login', JSON.stringify(login));
-           const view= localStorage.getItem('login')
+           const viewstr= localStorage.getItem('login')
+           const view= JSON.parse(viewstr)
            
-           navigate('/home')
+           const id= login.id
+            dispatch(getUSerById(id))
+            navigate('/home')
        }
         return()=>{}
     },[login.name])
@@ -36,11 +39,7 @@ export default function LoginPage(){
         if(log.mail && log.password){
              dispatch(getLogin(log))
             } 
-            
-         
-        
-        
-    }
+        }
 
     
 

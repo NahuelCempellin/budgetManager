@@ -66,23 +66,16 @@ const userAuthentication= async (mail, password)=>{
 }
 
 
-const userID= async (name,surname)=>{
+const userID= async (id)=>{
     
+    console.log(id)
 
     try{
         const dbUser= await User.findOne({
-            include: [Expenses, Income],
-            where:{
-                name:{
-                    [Op.iLike]: `${name}`
-                },
-                surname:{
-                    [Op.iLike]: `${surname}`
-                }
-            }
+            include:[Income,Expenses],
+            where: {id},
         })
-        
-        
+       
         return dbUser;
 
     }catch(error){

@@ -6,8 +6,8 @@ import { LoginNav } from "../../../styles/navbar/nav";
 export default function LogButton(){
     return(
         <LoginNav>
-            <Link to=''>
-            <a>Register</a>
+            <Link to='/register'>
+            <p>Register</p>
             </Link>
         </LoginNav>
     )

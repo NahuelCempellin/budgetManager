@@ -11,7 +11,9 @@ export default function NavHome(){
             <Link to={'/addexpenses'}>
             <div>Add Expenses</div>
             </Link>
+            <Link to={'/movements'}>
             <div>View last movements</div>
+            </Link>
         </NavHomeCont>
     )
 }

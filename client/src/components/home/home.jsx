@@ -1,44 +1,38 @@
-import React,{useEffect} from "react";
+import React,{useEffect, useState} from "react";
 import {useDispatch,useSelector} from 'react-redux';
-import { Link } from "react-router-dom";
 import NavHome from "../navbar/navHome/navHome";
 import { LogoutNav } from "../navbar/navHome/logout";
 import { HomeCont } from "../../styles/home/home";
-import { getUser } from "../../reducer/actions";
+import {  getUSerById } from "../../reducer/actions";
+import CardHome from "./cardHome";
 
 export default function Home(){
-const userData= useSelector((state)=> state.login)
+const userData= useSelector((state)=>state.userId)
 const dispatch= useDispatch();
+const [user,setUser]= useState(false)
 const logdata=localStorage.getItem('login');
 const Data= JSON.parse(logdata);
 
-const user= {
-    name: Data.name,
-    surname: Data.surname
-}
+const id= Data.id
+
 
 
 useEffect(()=>{
-    dispatch(getUser(user))
-    
-    },[])
-
-const us= useSelector((state)=> state.user)
+    dispatch(getUSerById(id))
+    setUser(true)
+},[])
 
 
-
-
-
-let amountIncome= userData.incomes.map(el=> el.amount).reduce((prev, curr) => prev + curr, 0);
-let amountExpenses= userData.expenses.map(el=> el.amount).reduce((prev, curr) => prev + curr, 0);
-let Balance= amountIncome - amountExpenses;
+const amountIncome=  user === true ?   userData.incomes.map(el=> el.amount).reduce((prev, curr) => prev + curr, 0) : 'soy un forro';
+const amountExpenses=  user === true ?  userData.expenses.map(el=> el.amount).reduce((prev, curr) => prev + curr, 0) : 'soy un forro';
+const balance= amountIncome - amountExpenses;
 
 
 
-let incomes= userData.incomes.map(el=> el);
-let expenses= userData.expenses.map(el=> el);
 
-const cards= [...incomes, ...expenses];
+
+
+
 
 
 
@@ -56,32 +50,13 @@ const cards= [...incomes, ...expenses];
 
             <div className="balance">
                 <h2>Actual balance:</h2>
-                <h1>{`$${Balance}`}</h1>
+                <h1>{ balance < 0 ? 0 : `$${balance}`}</h1>
             </div>
             </div>
-            <div className="listCont">
-                <ul>
-                    {
-                        cards.map(el=>{
-                            return(
-                                <div className="card" key={el.id}>
-                                    <div className="concept">
-                                    <h3>{el.Concept}</h3>
-                                    <p>{"Category: "+ el.category}</p>
-                                    <p>{"Type: "+el.type}</p>
-                                    </div>
-
-                                    <div className="date">
-                                    <p className="d">{el.date}</p>
-                                    <h2>{"$"+ el.amount}</h2>
-                                    </div>
-                                </div>
-                            )
-                        })
-                    }
-                </ul>
-            </div>
-
+            {
+                
+            <CardHome key={balance}/>
+}
         </HomeCont>
     )
 }

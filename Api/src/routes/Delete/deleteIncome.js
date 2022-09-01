@@ -2,7 +2,7 @@ const {deleteIncome} = require('../../Controllers/IncomesExpenses');
 const express= require('express');
 const router= express.Router();
 
-router.put('/', deleteIncome)
+router.delete('/', deleteIncome)
 
 
 module.exports = router;

@@ -9,19 +9,22 @@ const editIncome = require('../routes/Edit/editIncomeRoute');
 const editExpenses = require('../routes/Edit/editExpensesRoute');
 const deleteIncome= require('../routes/Delete/deleteIncome');
 const deleteExpenses= require('../routes/Delete/deleteExpenses');
+const incomeId= require('./idIncomeExpenses/incomeByid');
+const expensesId= require('./idIncomeExpenses/expensesById')
 
 const router = Router();
 
 router.use('/createUser',create);
 router.use('/users', getUsers);
 router.use('/login', auth);
-router.use('/userid', userById);
+router.use('/user', userById);
 router.use('/income',addIncome);
 router.use('/expenses', addExpenses);
 router.use('/editIncome', editIncome);
 router.use('/editExpenses', editExpenses);
 router.use('/deleteIncome', deleteIncome);
 router.use('/deleteExpenses', deleteExpenses);
-
+router.use('/incomeId', incomeId);
+router.use('/expensesId', expensesId);
 
 module.exports = router;
