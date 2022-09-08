@@ -23,8 +23,8 @@ export default function CardHome(){
  
 
 
-const incomes=  user === true ? userData.incomes.map(el=> el) : 'soy un forro';
-const expenses=  user === true ? userData.expenses.map(el=> el) : 'soy un forro';
+const incomes=  user === true ? userData.incomes.map(el=> el) : '';
+const expenses=  user === true ? userData.expenses.map(el=> el) : '';
 const cards= [...incomes, ...expenses];
 
 
